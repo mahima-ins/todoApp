@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import "./Todo.css"
+import TodoList from './TodoList';
 
  const Todo = () => {
-  const[inputList,setInputList]=useState("buy apple");
+  const[inputList,setInputList]=useState("");
   const[items, setItems]= useState([])
   const itemEvent=(event)=>{
     setInputList(event.target.value);
@@ -12,6 +13,15 @@ import "./Todo.css"
      setItems((oldItems)=>{
          return[...oldItems, inputList];
      });
+     setInputList('');
+  };
+  const delItems=(id)=>{
+    // console.log("deleted");
+    setItems((oldItems)=>{
+      return oldItems.filter((arrayEle , index)=>{
+        return index !== id;
+      })
+    })
   };
   return (
     <div className='main'>
@@ -19,13 +29,17 @@ import "./Todo.css"
     <br></br>
     <h1>Todo list</h1>
     <br></br>
-    <input type="text" placeholder='Add list' onChange={itemEvent}/>
-    <button onClick={List}>+</button>
+    <input type="text" placeholder='Add list' value={inputList} onChange={itemEvent}/>
+    <button  style={{marginLeft:"25px", borderRadius:"50%", border:"none"}}onClick={List}>+</button>
     <ol>
       {/* <li> {inputList} </li> */}
       {
-        items.map((inputList)=>{
-          return  <li> {inputList} </li>
+        items.map((inputList, index)=>{
+        return <TodoList key= {index}
+         id={index}
+          text= {inputList}
+          onSelect={delItems}
+         />;
         })
       }
     </ol>

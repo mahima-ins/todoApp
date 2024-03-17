@@ -29,7 +29,7 @@ import TodoList from './TodoList';
     <br></br>
     <h1>Todo list</h1>
     <br></br>
-    <input type="text" placeholder='Add list' value={inputList} onChange={itemEvent}/>
+    <input type="text" placeholder='Enter your task' value={inputList} onChange={itemEvent}/>
     <button  style={{marginLeft:"25px", borderRadius:"50%", border:"none"}}onClick={List}>+</button>
     <ol>
       {/* <li> {inputList} </li> */}
